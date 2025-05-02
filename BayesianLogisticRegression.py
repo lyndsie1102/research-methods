@@ -29,8 +29,8 @@ print(az.summary(trace, hdi_prob=0.95, var_names=["α", "β"]))
 
 # Calculate probability that β < 0
 β_samples = trace.posterior["β"].values.flatten()
-prob_β_neg = (β_samples < 0).mean()
-print(f"\nP(β < 0): {prob_β_neg:.3f}")
+prob_β_pos = (β_samples > 0).mean()
+print(f"\nP(β > 0): {prob_β_pos:.3f}")
 
 # ========================
 # 2. Save Diagnostic Plots

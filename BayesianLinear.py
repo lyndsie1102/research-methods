@@ -31,13 +31,14 @@ posterior_pred = (
 # Calculate HDI for each x value
 hdi_vals = np.array([az.hdi(posterior_pred[:, i], hdi_prob=0.95) 
                   for i in range(len(x_vals))])
+β_samples = trace.posterior["β"].values.flatten()
+prob_β_pos = (β_samples > 0).mean()
+print(f"\nP(β > 0): {prob_β_pos:.3f}")
 
 
 # Print key parameters
 print("\nKey Parameters:")
-print(f"Posterior mean intercept (α): {trace.posterior['α'].mean().item():.2f}")
-print(f"Posterior mean slope (β): {trace.posterior['β'].mean().item():.2f}")
-print(f"Posterior mean error term (σ): {trace.posterior['σ'].mean().item():.2f}")
+
 
 # Plotting
 plt.figure(figsize=(10, 6))
